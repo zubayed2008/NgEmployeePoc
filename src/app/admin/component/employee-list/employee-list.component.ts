@@ -14,10 +14,6 @@ export class EmployeeListComponent implements OnInit {
 
   employees: Employee[] = [];
 
-  currentEmployee? : Employee = new Employee();
-
-  newEmployee? : Employee = new Employee();
-
   constructor(config: NgbModalConfig, private modalService: NgbModal) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';

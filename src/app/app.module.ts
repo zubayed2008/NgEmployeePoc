@@ -8,6 +8,7 @@ import { EditEmployeeComponent } from './admin/component/edit-employee/edit-empl
 import { DeleteEmployeeComponent } from './admin/component/delete-employee/delete-employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './router/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,15 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   entryComponents: [
     AddEmployeeComponent ,
     EditEmployeeComponent,
     DeleteEmployeeComponent ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+  AppComponent]
 })
 export class AppModule { }

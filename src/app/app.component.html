@@ -322,9 +322,22 @@
 
   <input type="hidden" #selection>
 
-  <app-employee-list></app-employee-list>
-
-
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <div class="container">
+      <a class="navbar-brand" href="#">Employee Application</a>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/Employees">Employee List</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container text-center">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
 

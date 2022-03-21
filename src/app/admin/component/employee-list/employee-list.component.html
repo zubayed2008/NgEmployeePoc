@@ -1,45 +1,31 @@
-
-<ng-template #employeeDeleteModal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Delete Employee</h4>
-    <button type="button" class="btn-close" aria-label="close" (click)="d('cross click')"></button>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-2 mb-2">
+      <button class="btn btn-primary" (click)="addEmployee()">Add Employee</button>
+      <br/>
+    </div>
   </div>
-  <div class="modal-body">
-    <div>Are you sure you want to delete this employee?</div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="c('save click')">Delete</button>
-  </div>
-</ng-template>
-
-
-
-
-<div>
-  <button class="btn btn-primary" (click)="addEmployee()">Add Employee</button>
-  <br/>
+  <table class="table table-striped">
+      <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Joining Date</th>
+        <th>Gender</th>
+        <th>Role</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let employee of employees; let i = index">
+        <td> {{employee.EmployeeID}} </td>
+        <td> {{employee.EmployeeName}} </td>
+        <td> {{employee.JoiningDate  | date: 'dd/MM/yyyy' }} </td>
+        <td> {{employee.Gender}} </td>
+        <td> {{employee.Role}} </td>
+        <td> {{employee.Department}} </td>
+        <td>
+          <button class="btn btn-primary"  (click)="edit( employee.EmployeeID )" >Edit</button> &nbsp;
+          <button class="btn btn-danger" (click)="delete( employee.EmployeeID )">Delete</button>
+        </td>
+      </tr>
+  </table>
 </div>
-<table class="table table-striped">
-    <tr>
-      <th>Employee ID</th>
-      <th>Employee Name</th>
-      <th>Joining Date</th>
-      <th>Gender</th>
-      <th>Role</th>
-      <th>Department</th>
-      <th>Actions</th>
-    </tr>
-    <tr *ngFor="let employee of employees; let i = index">
-      <td> {{employee.EmployeeID}} </td>
-      <td> {{employee.EmployeeName}} </td>
-      <td> {{employee.JoiningDate  | date: 'dd/MM/yyyy' }} </td>
-      <td> {{employee.Gender}} </td>
-      <td> {{employee.Role}} </td>
-      <td> {{employee.Department}} </td>
-      <td>
-        <button class="btn btn-primary"  (click)="edit( employee.EmployeeID )" >Edit</button> &nbsp;
-        <button class="btn btn-danger" (click)="delete( employee.EmployeeID )">Delete</button>
-      </td>
-    </tr>
-</table>
-
