@@ -7,6 +7,7 @@ import { AddEmployeeComponent } from './admin/component/add-employee/add-employe
 import { EditEmployeeComponent } from './admin/component/edit-employee/edit-employee.component';
 import { DeleteEmployeeComponent } from './admin/component/delete-employee/delete-employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
+  entryComponents: [
+    AddEmployeeComponent ,
+    EditEmployeeComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Employee } from 'src/app/models/Employee';
 
 @Component({
   selector: 'app-edit-employee',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditEmployeeComponent implements OnInit {
 
-  constructor() { }
+  @Input() employee : Employee = new Employee();
+
+  constructor(public activeModal : NgbActiveModal) { }
 
   ngOnInit(): void {
   }
 
+  EmployeeSave(data : Employee): void {
+    this.activeModal.close(data);
+  }
 }

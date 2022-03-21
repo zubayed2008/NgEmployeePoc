@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Employee} from './../../../models/Employee';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditEmployeeComponent } from '../edit-employee/edit-employee.component';
+import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -50,22 +52,43 @@ export class EmployeeListComponent implements OnInit {
         Gender : "Male",
         Role : "Member",
         Department : "Member"
+      },
+      {
+        EmployeeID : "004",
+        EmployeeName : "Konica 004",
+        JoiningDate : new Date("05/04/2020"),
+        Gender : "Female",
+        Role : "Member",
+        Department : "Member"
       }
     ];
   }
 
-  edit(employeeEdit : any, employeeId : any | string) : void {
-    this.modalService.open(employeeEdit);
-    this.currentEmployee = new Employee();
-    this.currentEmployee = this.employees.filter(m => m.EmployeeID == employeeId)[0];
-  }
+
+  edit(employeeId : any | string) : void {
+       const editEmployeeModal = this.modalService.open(EditEmployeeComponent);
+       let selectedEmployee = new Employee();
+       selectedEmployee = this.employees.filter(m => m.EmployeeID == employeeId)[0];
+       let index = this.employees.indexOf(selectedEmployee);
+       editEmployeeModal.componentInstance.employee = selectedEmployee;
+       editEmployeeModal.result.then((result : Employee) => {
+         if (result){
+           this.employees[index] = result;
+           console.log(this.employees);
+         }});
+    }
 
   delete(employeeDelete : any) : void {
     this.modalService.open(employeeDelete);
   }
 
-  add(employeeAdd : any) : void {
-    this.modalService.open(employeeAdd);
+  addEmployee() : void {
+    const addEmployeeModal = this.modalService.open(AddEmployeeComponent);
+    addEmployeeModal.result.then((result : Employee) => {
+      if (result){
+        //console.log(result);
+        this.employees.push(result);
+      }});
   }
 
 
