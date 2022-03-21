@@ -3,6 +3,7 @@ import {Employee} from './../../../models/Employee';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditEmployeeComponent } from '../edit-employee/edit-employee.component';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
+import { DeleteEmployeeComponent } from '../delete-employee/delete-employee.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -78,8 +79,16 @@ export class EmployeeListComponent implements OnInit {
          }});
     }
 
-  delete(employeeDelete : any) : void {
-    this.modalService.open(employeeDelete);
+  delete(employeeId : any | string) : void {
+    const deleteEmployeeModal = this.modalService.open(DeleteEmployeeComponent);
+    let selectedEmployee = new Employee();
+    selectedEmployee = this.employees.filter(m => m.EmployeeID == employeeId)[0];
+    let index = this.employees.indexOf(selectedEmployee);
+    deleteEmployeeModal.result.then((result : boolean) => {
+      if (result){
+        this.employees.splice(index,1);
+        //console.log(this.employees);
+      }});
   }
 
   addEmployee() : void {
@@ -87,7 +96,9 @@ export class EmployeeListComponent implements OnInit {
     addEmployeeModal.result.then((result : Employee) => {
       if (result){
         //console.log(result);
-        this.employees.push(result);
+        if(result.EmployeeID !== undefined){
+          this.employees.push(result);
+        }
       }});
   }
 

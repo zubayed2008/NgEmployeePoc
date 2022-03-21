@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-delete-employee',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteEmployeeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public activeModal : NgbActiveModal) { }
 
   ngOnInit(): void {
   }
 
+  EmployeeDelete(data : boolean): void {
+    this.activeModal.close(data);
+  }
 }

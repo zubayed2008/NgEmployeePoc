@@ -24,7 +24,8 @@ import { FormsModule } from '@angular/forms';
   ],
   entryComponents: [
     AddEmployeeComponent ,
-    EditEmployeeComponent ],
+    EditEmployeeComponent,
+    DeleteEmployeeComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })
