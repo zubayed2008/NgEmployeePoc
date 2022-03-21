@@ -28,44 +28,6 @@ export class EmployeeListComponent implements OnInit {
     this.getEmployees();
   }
 
-  getEmployees() : void {
-      this.employees = [
-        {
-        EmployeeID : "001",
-        EmployeeName : "Zubayed 001",
-        JoiningDate : new Date("05/04/2019"),
-        Gender : "Male",
-        Role : "Member",
-        Department : "Development"
-      },
-      {
-        EmployeeID : "002",
-        EmployeeName : "Mizan 002",
-        JoiningDate : new Date("05/04/2021"),
-        Gender : "Male",
-        Role : "Member",
-        Department : "Admin"
-      },
-      {
-        EmployeeID : "003",
-        EmployeeName : "Selim 002",
-        JoiningDate : new Date("05/04/2020"),
-        Gender : "Male",
-        Role : "Member",
-        Department : "Member"
-      },
-      {
-        EmployeeID : "004",
-        EmployeeName : "Konica 004",
-        JoiningDate : new Date("05/04/2020"),
-        Gender : "Female",
-        Role : "Member",
-        Department : "Member"
-      }
-    ];
-  }
-
-
   edit(employeeId : any | string) : void {
        const editEmployeeModal = this.modalService.open(EditEmployeeComponent);
        let selectedEmployee = new Employee();
@@ -103,11 +65,41 @@ export class EmployeeListComponent implements OnInit {
   }
 
 
-  addEmployeeModal() : void{
-    console.log(this.newEmployee?.EmployeeID);
-    if(this.newEmployee?.EmployeeID !== undefined){
-      this.employees.push(this.newEmployee!);
+
+  getEmployees() : void {
+    this.employees = [
+      {
+      EmployeeID : "001",
+      EmployeeName : "Zubayed 001",
+      JoiningDate : new Date("05/04/2019"),
+      Gender : "Male",
+      Role : "Member",
+      Department : "Development"
+    },
+    {
+      EmployeeID : "002",
+      EmployeeName : "Mizan 002",
+      JoiningDate : new Date("05/04/2021"),
+      Gender : "Male",
+      Role : "Member",
+      Department : "Admin"
+    },
+    {
+      EmployeeID : "003",
+      EmployeeName : "Selim 002",
+      JoiningDate : new Date("05/04/2020"),
+      Gender : "Male",
+      Role : "Member",
+      Department : "Member"
+    },
+    {
+      EmployeeID : "004",
+      EmployeeName : "Konica 004",
+      JoiningDate : new Date("05/04/2020"),
+      Gender : "Female",
+      Role : "Member",
+      Department : "Member"
     }
-    this.modalService.dismissAll();
-  }
+  ];
+}
 }
