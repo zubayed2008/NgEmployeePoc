@@ -6,12 +6,14 @@ import { AuthenticationGuard } from "./authentication/guards/authentication.guar
 import { RoleGuard } from "./authentication/guards/role.guard";
 import { NotFoundComponent } from "./shared/components/not-found/not-found.component";
 import { ROLE } from "./shared/Enums/role";
+import { UserListComponent } from "./user/user-list/user-list.component";
 
 const routes: Routes = [
   //{path: 'login', component: LoginComponent},
-  {path: 'home', component: LoginComponent, canActivate: [AuthenticationGuard]},
+  {path: '', component: LoginComponent},
+  {path: 'login', component: LoginComponent, canActivate: [AuthenticationGuard]},
   {path: 'employees', component: EmployeeListComponent, canActivate: [AuthenticationGuard, RoleGuard], data: {expectedRole: ROLE.ADMIN}},
-  //{path: 'user', component: UserDashboardComponent, canActivate: [AuthenticationGuard, RoleGuard], data: {expectedRole: ROLE.USER}},
+  {path: 'users', component: UserListComponent, canActivate: [AuthenticationGuard, RoleGuard], data: {expectedRole: ROLE.USER}},
   {path: '**', component: NotFoundComponent}
 ];
 

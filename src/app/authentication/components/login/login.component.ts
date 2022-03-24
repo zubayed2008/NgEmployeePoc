@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../authentication.service';
 import { LibraryConfig } from '../../models/config';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { ROLE } from 'src/app/shared/Enums/role';
 
 @Component({
   selector: 'app-login',
@@ -30,8 +31,13 @@ export class LoginComponent implements OnInit {
   .pipe(first())
   .subscribe(
     data => {
-        console.log(data);
-        this.router.navigate(['/employees']);
+        console.log(data.token);
+        if(data.token == ROLE.ADMIN){
+          this.router.navigate(['/employees']);
+        }
+        else if(data.token == ROLE.USER){
+          this.router.navigate(['/users']);
+        }
     },
     error => {
         console.log(error);

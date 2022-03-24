@@ -13,10 +13,12 @@ import { AppRoutingModule } from './app-routing-module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MockBackendInterceptor } from './mock-backend/mock-backend.interceptor';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserAddComponent } from './user/user-add/user-add.component';
 
 export const AUTHENTICATION_CONFIG = {
   authEndpoint: "/users/authenticate",
-  initialPage: "home"
+  initialPage: "login"
 };
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ export const AUTHENTICATION_CONFIG = {
     AddEmployeeComponent,
     EditEmployeeComponent,
     DeleteEmployeeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UserListComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,
