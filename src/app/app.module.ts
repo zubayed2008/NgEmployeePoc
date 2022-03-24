@@ -8,28 +8,43 @@ import { EditEmployeeComponent } from './admin/component/edit-employee/edit-empl
 import { DeleteEmployeeComponent } from './admin/component/delete-employee/delete-employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './router/app-routing.module';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { AppRoutingModule } from './app-routing-module';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MockBackendInterceptor } from './mock-backend/mock-backend.interceptor';
 
+export const AUTHENTICATION_CONFIG = {
+  authEndpoint: "/users/authenticate",
+  initialPage: "home"
+};
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
     AddEmployeeComponent,
     EditEmployeeComponent,
-    DeleteEmployeeComponent
+    DeleteEmployeeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthenticationModule.forRoot(AUTHENTICATION_CONFIG)
   ],
   entryComponents: [
     AddEmployeeComponent ,
     EditEmployeeComponent,
     DeleteEmployeeComponent ],
-  providers: [],
-  bootstrap: [
-  AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MockBackendInterceptor,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

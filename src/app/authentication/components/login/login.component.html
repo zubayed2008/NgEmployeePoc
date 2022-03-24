@@ -1,0 +1,21 @@
+<div class="container">
+  <div *ngIf="error" class="mt-3 mb-3">
+      {{error}}
+  </div>
+
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" name="username" [ngModel]="user.username" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password"  name="password" [ngModel]="user.password"/>
+    </div>
+    <div class="button">
+      <button type="submit" mat-button>Login</button>
+    </div>
+  </form>
+</div>
+
+
